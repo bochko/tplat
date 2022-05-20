@@ -1,3 +1,5 @@
-# directories
+# directories :: ide
+.vscode/*
+# directories :: compile
 build/*
 
