@@ -52,7 +52,7 @@ constexpr auto kStr02 =
 /// expands any homogeneous parameter pack into an std::array at compile-time
 
 constexpr auto kParams = 
-  tplat::array_from_param_pack<std::uint64_t, 0xF, 0xB, 0x3>; /* std::array<std::uint64_t, 3>{15,10,3};
+  tplat::array_from_param_pack<std::uint64_t, 0xF, 0xB, 0x3>; /* std::array<std::uint64_t, 3>{15,10,3}; */
 ```
 
 ### `tplat::array_as_string_view` and `tplat::array_as_string_view_interface` | <tplat/array_as_string_view.hxx>
