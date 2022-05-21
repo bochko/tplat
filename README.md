@@ -52,5 +52,20 @@ constexpr auto kStr02 =
 /// expands any homogeneous parameter pack into an std::array at compile-time
 
 constexpr auto kParams = 
-  tplat::array_from_param_pack<std::uint64_t, 0xF, 0xB, 0x3> /* std::array<std::uint64_t, 3>{15,10,3};
+  tplat::array_from_param_pack<std::uint64_t, 0xF, 0xB, 0x3>; /* std::array<std::uint64_t, 3>{15,10,3};
+```
+
+### `tplat::array_as_string_view` and `tplat::array_as_string_view_interface` | <tplat/array_as_string_view.hxx>
+
+```cpp
+/// converts a compatible compile-time char array (std::array<CharT, N>) to a string_view
+/// or an interface object that supports a string_view instance method
+
+constexpr auto kArray = std::array{'h','e','l','l','o'};
+
+constexpr kStrView 
+  = tplat::array_as_string_view<kArray>; /* std::string_view{"hello"} */
+
+constexpr kStrViewIf
+  = tplat::array_as_string_view_interface<kArray>; /* kStrViewIf.string_view() -> std::string_view{"hello"} */
 ```
