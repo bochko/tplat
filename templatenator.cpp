@@ -4,6 +4,7 @@
 #include <tplat/array_multijoin.hxx>
 #include <tplat/array_chars_from_integral.hxx>
 #include <tplat/array_from_param_pack.hxx>
+#include <tplat/array_as_string_view.hxx>
 
 template <auto array>
 void print(std::string_view msg) {
@@ -35,6 +36,9 @@ int main(int argc, char **argv){
 
     static constexpr auto test_neg_array_chars_from_integral =
         tplat::array_chars_from_integral<-140071>;
+
+    static constexpr auto sv_neg_array = tplat::array_as_string_view<test_neg_array_chars_from_integral>;
+    std::cout << sv_neg_array << std::endl;
 
     static constexpr auto test_zero_array_chars_from_integral = 
         tplat::array_chars_from_integral<0>;
