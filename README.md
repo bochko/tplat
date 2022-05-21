@@ -34,10 +34,10 @@ constexpr auto kOneTwoThree =
 /// also allows the user to set a number base for the conversion
 
 // -199, base-10 -> "-199"
-constexpr auto str10 = tplat::array_chars_from_integral<-199>; /* std::array{'-','1','9','9'} */
+constexpr auto kStr10 = tplat::array_chars_from_integral<-199>; /* std::array{'-','1','9','9'} */
 
 // 32713, base-16 -> "7fc9"
-constexpr auto str16 = tplat::array_chars_from_integral<32713, 16>; /* std::array{'7','f','c','9'} */
+constexpr auto kStr16 = tplat::array_chars_from_integral<32713, 16>; /* std::array{'7','f','c','9'} */
 
 // 105, base-2 -> "1101001"
-constexpr auto str02 = tplat::array_chars_from_integral<1105, 2>; /* std::array{'1','1','0','1','0','0','1'} */
+constexpr auto kStr02 = tplat::array_chars_from_integral<1105, 2>; /* std::array{'1','1','0','1','0','0','1'} */
