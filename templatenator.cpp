@@ -3,6 +3,7 @@
 #include <tplat/array_join.hxx>
 #include <tplat/array_multijoin.hxx>
 #include <tplat/array_chars_from_integral.hxx>
+#include <tplat/array_from_param_pack.hxx>
 
 template <auto array>
 void print(std::string_view msg) {
@@ -37,5 +38,8 @@ int main(int argc, char **argv){
 
     static constexpr auto test_zero_array_chars_from_integral = 
         tplat::array_chars_from_integral<0>;
+
+    static constexpr auto test_array_from_param_pack = 
+        tplat::array_from_param_pack<std::int64_t, 1, 2, 3, 4>;
 
 }
