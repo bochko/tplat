@@ -1,6 +1,6 @@
 ## TPLAT++
 
-### `tplat::array_join` <tplat/array_join.hxx>
+### `tplat::array_join` | <tplat/array_join.hxx>
 
 ```cpp
 /// joins (concatenates) two `std::array` of the same element type at compile-time
@@ -12,7 +12,7 @@ constexpr auto kFooBar =
   tplat::array_join<kFoo, kBar>; /* std::array{'f','o','o','b','a','r'} */
 ```
 
-### `tplat::array_multijoin` <tplat/array_multijoin.hxx>
+### `tplat::array_multijoin` | <tplat/array_multijoin.hxx>
 
 ```cpp
 /// joins (concatenates) two OR MORE* `std::array` of the same element type at compile-time
@@ -26,7 +26,7 @@ constexpr auto kOneTwoThree =
   tplat::array_multijoin<kOne, kTwo, kThree>; /* std::array{0,6,14,1,9,16,22} */
 ```
 
-### `tplat::array_chars_from_integral`  <tplat/array_chars_from_integral.hxx>
+### `tplat::array_chars_from_integral` | <tplat/array_chars_from_integral.hxx>
 
 ```cpp
 /// converts a signed or unsigned integer literal to a non-terminated character
@@ -44,3 +44,12 @@ constexpr auto kStr16 =
 // 105, base-2 -> "1101001"
 constexpr auto kStr02 = 
   tplat::array_chars_from_integral<1105, 2>; /* std::array{'1','1','0','1','0','0','1'} */
+```
+
+### `tplat::array_from_param_pack` | <tplat/array_from_param_pack.hxx>
+
+```cpp
+/// expands any homogeneous parameter pack into an std::array at compile-time
+
+constexpr auto kParams = 
+  tplat::array_from_param_pack<std::uint64_t, 0xF, 0xB, 0x3> /* std::array<std::uint64_t, 3>{15,10,3};
