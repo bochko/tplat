@@ -38,14 +38,14 @@ namespace tplat::t {
 
     template <typename integral>
     struct for_integral_type {
-        template <bool negative, integral remainder, digit... digits>
-        struct dismember_integral : dismember_integral<negative, remainder / 10, remainder % 10, digits...> {};
+        template <bool negative, auto base, integral remainder, digit... digits>
+        struct dismember_integral : dismember_integral<negative, base, remainder / base, remainder % base, digits...> {};
 
-        template <bool negative, digit... digits>
-        struct dismember_integral<negative, 0, digits...> : map_chars_from_integral<negative, digits...> {};
+        template <bool negative, auto base, digit... digits>
+        struct dismember_integral<negative, base, 0, digits...> : map_chars_from_integral<negative, digits...> {};
 
-        template <bool negative>
-        struct dismember_integral<negative, 0> : map_chars_from_integral<negative, 0> {};
+        template <bool negative, auto base>
+        struct dismember_integral<negative, base, 0> : map_chars_from_integral<negative, 0> {};
     };
 
     template <auto number>
@@ -54,7 +54,7 @@ namespace tplat::t {
     };
 
     template <auto number, auto base = 10, typename integral = decltype(number)>
-    struct array_chars_from_integral : for_integral_type<integral>::template dismember_integral<(number < integral{0}), abs_integral<number>::value> {};
+    struct array_chars_from_integral : for_integral_type<integral>::template dismember_integral<(number < integral{0}), base, abs_integral<number>::value> {};
 
 }
 
@@ -62,30 +62,3 @@ namespace tplat {
     template <auto number, auto base = 10>
     static constexpr auto array_chars_from_integral = tplat::t::array_chars_from_integral<number, base>::value;
 }
-
-// namespace detail
-// {
-//     template<uint8_t... digits> struct positive_to_chars { static const char value[]; };
-//     template<uint8_t... digits> constexpr char positive_to_chars<digits...>::value[] = {('0' + digits)..., 0};
-
-//     template<uint8_t... digits> struct negative_to_chars { static const char value[]; };
-//     template<uint8_t... digits> constexpr char negative_to_chars<digits...>::value[] = {'-', ('0' + digits)..., 0};
-
-//     template<bool neg, uint8_t... digits>
-//     struct to_chars : positive_to_chars<digits...> {};
-
-//     template<uint8_t... digits>
-//     struct to_chars<true, digits...> : negative_to_chars<digits...> {};
-
-//     template<bool neg, uintmax_t rem, uint8_t... digits>
-//     struct explode : explode<neg, rem / 10, rem % 10, digits...> {};
-
-//     template<bool neg, uint8_t... digits>
-//     struct explode<neg, 0, digits...> : to_chars<neg, digits...> {};
-
-//     template<typename T>
-//     constexpr uintmax_t cabs(T num) { return (num < 0) ? -num : num; }
-// }
-
-// template<typename Integer, Integer num>
-// struct string_from : detail::explode<(num < 0), detail::cabs(num)> {};
