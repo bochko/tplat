@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 include(CTest)
 enable_testing()
 
-add_library(templatenator templatenator.cpp)
+add_executable(templatenator templatenator.cpp)
 target_include_directories(templatenator PUBLIC "include")
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
