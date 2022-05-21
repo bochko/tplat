@@ -40,6 +40,9 @@ int main(int argc, char **argv){
     static constexpr auto sv_neg_array = tplat::array_as_string_view<test_neg_array_chars_from_integral>;
     std::cout << sv_neg_array << std::endl;
 
+    static constexpr auto sv_neg_array_if = tplat::array_as_string_view_interface<test_neg_array_chars_from_integral>;
+    std::cout << sv_neg_array_if.string_view() << std::endl;
+
     static constexpr auto test_zero_array_chars_from_integral = 
         tplat::array_chars_from_integral<0>;
 
