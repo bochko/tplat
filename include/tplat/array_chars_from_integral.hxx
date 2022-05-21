@@ -53,8 +53,15 @@ namespace tplat::t {
         static constexpr auto value = ((number < 0) ? -number : number);
     };
 
+    template <auto base, auto min_number_base, auto max_number_base>
+    struct constrain_number_base {
+        static_assert(base >= min_number_base && base <= max_number_base);
+    };
+
     template <auto number, auto base = 10, typename integral = decltype(number)>
-    struct array_chars_from_integral : for_integral_type<integral>::template dismember_integral<(number < integral{0}), base, abs_integral<number>::value> {};
+    struct array_chars_from_integral : 
+        for_integral_type<integral>::template dismember_integral<(number < integral{0}), base, abs_integral<number>::value>, 
+        constrain_number_base<base, 2, 16> {};
 
 }
 
