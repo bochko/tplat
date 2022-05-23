@@ -11,6 +11,16 @@ void print(std::string_view msg) {
     std::cout << msg << " ~~> " << std::string_view{array.begin(), array.end()} << std::endl;
 }
 
+template <unsigned code>
+struct ansi_3bit : 
+  public tplat::t::array_as_string_view_interface<
+    tplat::array_multijoin<
+      tplat::array_from_param_pack<char, '\x1b', '['>,
+      tplat::array_chars_from_integral<code>,
+      tplat::array_from_param_pack<char, 'm'>>> {};
+
+static constexpr auto red = ansi_3bit<31>{};
+
 int main(int argc, char **argv){
 
     print<tplat::array_join<std::array{'a', 'b'}, std::array{'c', 'd'}>>("tplat::array_join");
@@ -38,7 +48,7 @@ int main(int argc, char **argv){
         tplat::array_chars_from_integral<-140071>;
 
     static constexpr auto sv_neg_array = tplat::array_as_string_view<test_neg_array_chars_from_integral>;
-    std::cout << sv_neg_array << std::endl;
+    std::cout << red.string_view() << sv_neg_array << std::endl;
 
     static constexpr auto sv_neg_array_if = tplat::array_as_string_view_interface<test_neg_array_chars_from_integral>;
     std::cout << sv_neg_array_if.string_view() << std::endl;
