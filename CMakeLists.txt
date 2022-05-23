@@ -17,7 +17,10 @@ FetchContent_MakeAvailable("googletest")
 add_library(tplat INTERFACE)
 target_include_directories(tplat INTERFACE "include")
 
-add_executable(tplat_test "test/test_array_as_string_view.cxx")
+add_executable(tplat_test 
+  "test/test_array_as_string_view.cxx" 
+  "test/test_array_chars_from_integral.cxx")
+
 target_link_libraries(tplat_test tplat gtest_main)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
