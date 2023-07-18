@@ -3,9 +3,13 @@ project(tplat VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
+# avoid the many configs created by ctest
+set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1) 
 
 # dependencies
 include(FetchContent)
+include(CTest)
+
 FetchContent_Declare(
   "googletest"
   URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
@@ -22,6 +26,8 @@ add_executable(tplat_test
   "test/test_array_chars_from_integral.cxx")
 
 target_link_libraries(tplat_test tplat gtest_main)
+
+add_test(tplat_gtest tplat_test)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
