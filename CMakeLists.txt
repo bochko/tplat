@@ -12,7 +12,7 @@ include(CTest)
 
 FetchContent_Declare(
   "googletest"
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+  URL "https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip"
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -27,7 +27,7 @@ add_executable(tplat_test
 
 target_link_libraries(tplat_test tplat gtest_main)
 
-add_test(tplat_gtest tplat_test)
+add_test(tplat_test tplat_test)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
