@@ -1,8 +1,8 @@
 #pragma once
 
-#include <tplat/array_join.hxx>
+#include <tplat/array_join.hpp>
 
-namespace tplat::t {
+namespace tplat::impl {
 
 template <auto... array_n>
 struct array_multijoin;
@@ -24,12 +24,12 @@ struct array_multijoin<array_0, array_1, array_n...> {
                         array_multijoin<array_n...>::value>;
 };
 
-}  // namespace tplat::t
+}  // namespace tplat::impl
 
 namespace tplat {
 
 template <auto... array_n>
 static constexpr auto array_multijoin =
-    tplat::t::array_multijoin<array_n...>::value;
+    tplat::impl::array_multijoin<array_n...>::value;
 
 }  // namespace tplat

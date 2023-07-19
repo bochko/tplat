@@ -21,13 +21,19 @@ FetchContent_MakeAvailable("googletest")
 add_library(tplat INTERFACE)
 target_include_directories(tplat INTERFACE "include")
 
-add_executable(tplat_test 
-  "test/test_array_as_string_view.cxx" 
-  "test/test_array_chars_from_integral.cxx")
+add_executable(tplat_test_array_to_string 
+  "test/TestArrayToStringView.cpp" )
+target_link_libraries(tplat_test_array_to_string tplat gtest_main)
+add_test(tplat_test_array_to_string tplat_test_array_to_string)
 
-target_link_libraries(tplat_test tplat gtest_main)
+add_executable(tplat_test_integer_to_chars
+  "test/TestIntegerToChars.cpp")
+target_link_libraries(tplat_test_integer_to_chars tplat gtest_main)
+add_test(tplat_test_integer_to_chars tplat_test_integer_to_chars)
 
-add_test(tplat_test tplat_test)
+add_executable(tplat_example "examples/all.cpp")
+target_link_libraries(tplat_example tplat)
+
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -2,7 +2,7 @@
 
 #include <array>
 
-namespace tplat::t {
+namespace tplat::impl {
 
 template <auto... size>
 using iseq = std::index_sequence<size...>;
@@ -21,12 +21,12 @@ struct array_join<array_lhs, array_rhs, iseq<idxs_lhs...>, iseq<idxs_rhs...>> {
       std::array{array_lhs[idxs_lhs]..., array_rhs[idxs_rhs]...};
 };
 
-}  // namespace tplat::t
+}  // namespace tplat::impl
 
 namespace tplat {
 
 template <auto array_lhs, auto array_rhs>
 static constexpr auto array_join =
-    tplat::t::array_join<array_lhs, array_rhs>::value;
+    tplat::impl::array_join<array_lhs, array_rhs>::value;
 
 }  // namespace tplat
